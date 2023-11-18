@@ -58,3 +58,22 @@ vim.diagnostic.config({
 -- Show line diagnostics automatically in hover window
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({ border = "rounded", focus = false }, { focus = false })]]
+
+-- C++
+lspconfig.clangd.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"c", "cpp"}
+}
+
+lspconfig.cmake.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"cmake"}
+}
+
+lspconfig.ccls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"c", "cpp"}
+}

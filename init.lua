@@ -22,32 +22,38 @@ require "plugins"
 
 -- Define function to format and save the current file
 function formatAndSave()  
-  -- Read the contents of the current file
-  local file_contents = vim.fn.join(vim.fn.getline(1, '$'), "\n")
-  
-  -- Define the commands to run
-  local yapf_command = 'yapf --no-local-style --style ~/.config/nvim/lua/custom/configs/style.yapf'
-  local isort_command = 'isort --ca --ac --ls --ot -l 88 -q '
-  local docformatter_command = 'docformatter -i '
-  
-  -- Run the yapf command with the file contents as input and capture the output
-  local formatted_text = vim.fn.system(yapf_command, file_contents)
+    local file_path = vim.fn.expand('%')
+    if file_path:match('.*%.py$') then
+        -- Read the contents of the current file
+        local file_contents = vim.fn.join(vim.fn.getline(1, '$'), "\n")
 
-  -- Write the formatted text back to a tempfile
-  local tempfile = vim.fn.tempname()
-  vim.fn.writefile(vim.fn.split(formatted_text, "\n"), tempfile)
-  -- Run the remaining commands
-  vim.fn.system(isort_command .. tempfile)
-  vim.fn.system(docformatter_command .. tempfile)
-  -- Move the temp file to the current file's location
-  if vim.fn.has('mac') then
-    local permission = vim.fn.trim(vim.fn.system('stat -f "%Mp%Lp"  ' .. vim.fn.expand('%')))
-    vim.fn.system('chmod "' .. permission .. '"  ' .. tempfile)
-  else
-    vim.fn.system('chmod --reference=' .. expand('%') .. ' ' .. tempfile)
-  end
-  vim.fn.rename(tempfile, vim.fn.expand('%'))
-  vim.api.nvim_command('silent edit!')
+        -- Define the commands to run
+        local yapf_command = 'yapf --no-local-style --style ~/.config/nvim/lua/custom/configs/style.yapf'
+        local isort_command = 'isort --ca --ac --ls --ot -l 88 -q '
+        local docformatter_command = 'docformatter -i '
+
+        -- Run the yapf command with the file contents as input and capture the output
+        local formatted_text = vim.fn.system(yapf_command, file_contents)
+
+        -- Write the formatted text back to a tempfile
+        local tempfile = vim.fn.tempname()
+        vim.fn.writefile(vim.fn.split(formatted_text, "\n"), tempfile)
+        -- Run the remaining commands
+        vim.fn.system(isort_command .. tempfile)
+        vim.fn.system(docformatter_command .. tempfile)
+        -- Move the temp file to the current file's location
+        if vim.fn.has('mac') then
+            local permission = vim.fn.trim(vim.fn.system('stat -f "%Mp%Lp"  ' .. file_path))
+            vim.fn.system('chmod "' .. permission .. '"  ' .. tempfile)
+        else
+            vim.fn.system('chmod --reference=' .. expand('%') .. ' ' .. tempfile)
+        end
+        vim.fn.rename(tempfile, file_path)
+    elseif file_path:match('.*%.cpp$') then
+        local clang_format_command = 'clang-format --style Microsoft -i ' .. file_path
+        vim.fn.system(clang_format_command)
+    end
+    vim.api.nvim_command('silent edit!')
 end
 
 
