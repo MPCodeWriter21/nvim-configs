@@ -30,7 +30,7 @@ function formatAndSave()
         -- Define the commands to run
         local yapf_command = 'yapf --no-local-style --style ~/.config/nvim/lua/custom/configs/style.yapf'
         local isort_command = 'isort --ca --ac --ls --ot -l 88 -q '
-        local docformatter_command = 'docformatter -i '
+        local docformatter_command = 'docformatter -i --black '
 
         -- Run the yapf command with the file contents as input and capture the output
         local formatted_text = vim.fn.system(yapf_command, file_contents)

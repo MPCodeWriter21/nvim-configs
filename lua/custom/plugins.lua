@@ -13,6 +13,9 @@ local plugins = {
                 "docformatter",
                 "lua-language-server",
                 "vscode-json-language-server",
+                "glow",
+                "marksman",
+                "clang-formatter"
             },
         },
     },
@@ -193,6 +196,10 @@ local plugins = {
     --         vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
     --     end,
     --     ft = { "python" },
-    -- },
+    {
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd = "Glow"
+    },
 }
 return plugins

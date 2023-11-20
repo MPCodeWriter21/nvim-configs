@@ -35,6 +35,11 @@ lspconfig.prosemd_lsp.setup{
     on_attach = on_attach,
 }
 
+lspconfig.marksman.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
+
 -- HTML LSP
 lspconfig.html.setup{
     on_attach = on_attach,
