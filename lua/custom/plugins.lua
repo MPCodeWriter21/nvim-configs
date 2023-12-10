@@ -15,7 +15,8 @@ local plugins = {
                 "vscode-json-language-server",
                 "glow",
                 "marksman",
-                "clang-formatter"
+                "clang-formatter",
+                "clangd"
             },
         },
     },
