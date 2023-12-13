@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
 -- Define function to format and save the current file
-function formatAndSave()  
+function formatAndSave()
     local file_path = vim.fn.expand('%')
 
     -- Read the contents of the current file
@@ -29,7 +29,7 @@ function formatAndSave()
 
     if file_path:match('.*%.py$') then
         -- Define the commands to run
-        local yapf_command = 'yapf --no-local-style --style ~/.config/nvim/lua/custom/configs/style.yapf'
+        local yapf_command = 'yapf --no-local-style --style ' .. vim.fn.getcwd() .. '/lua/custom/configs/style.yapf'
         local isort_command = 'isort --ca --ac --ls --ot -l 88 -q '
         local docformatter_command = 'docformatter -i --black '
 
