@@ -175,32 +175,14 @@ local plugins = {
         },
         event = "VeryLazy"
     },
-    -- {
-    --     'tmhedberg/SimpylFold',
-    --     opts = {},
-    --     ft = { "python" },
-    --     dependencies = {
-    --         "Konfekt/FastFold",
-    --     },
-    -- },
-    -- {
-    --     'MPCodeWriter21/nvim-treesitter-pyfold',
-    --     config = function()
-    --         require('nvim-treesitter.configs').setup({
-    --             pyfold = {
-    --                 enable = true,
-    --                 custom_foldtext = true
-    --             }
-    --         })
-    --         vim.opt.foldmethod = "expr"
-    --         vim.opt.foldexpr = "nvim_treesitter#fold_expr()"
-    --         vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
-    --     end,
-    --     ft = { "python" },
     {
         "ellisonleao/glow.nvim",
         config = true,
         cmd = "Glow"
     },
+    -- {
+    --     "TabbyML/vim-tabby",
+    --     event = "VeryLazy"
+    -- }
 }
 return plugins

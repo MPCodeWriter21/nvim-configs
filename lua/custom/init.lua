@@ -16,7 +16,7 @@ function formatAndSave()
 
     if file_path:match('.*%.py$') then
         -- Define the commands to run
-        local yapf_command = 'yapf --no-local-style --style ' .. vim.fn.getcwd() .. '/lua/custom/configs/style.yapf'
+        local yapf_command = 'yapf --no-local-style --style ' .. vim.fn.stdpath('config') .. '/lua/custom/configs/style.yapf'
         local isort_command = 'isort --ca --ac --ls --ot -l 88 -q '
         local docformatter_command = 'docformatter -i --black '
 
