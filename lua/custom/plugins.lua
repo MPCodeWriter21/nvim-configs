@@ -148,6 +148,7 @@ local plugins = {
     -- },
     {
         'huggingface/llm.nvim',
+        commit = "7bf97d0",
         event = "VeryLazy",
         config = function()
             require "custom.configs.llm"
