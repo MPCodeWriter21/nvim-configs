@@ -97,7 +97,8 @@ require("sg").setup {
 -- Javascript
 lspconfig.biome.setup {
     on_attach = on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    cmd = { "biome", "lsp-proxy", "--config-path=\"" .. vim.fn.stdpath("config") .. "/lua/custom/configs/biome.json\"" }
 }
 
 lspconfig.ember.setup {

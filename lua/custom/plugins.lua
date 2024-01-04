@@ -12,15 +12,14 @@ local plugins = {
                 "yapf",
                 "docformatter",
                 "lua-language-server",
-                "vscode-json-language-server",
                 "glow",
                 "marksman",
-                "clang-formatter",
                 "clangd",
                 "ember-language-server",
                 "biome",
                 "ast-grep",
-                "jedi-language-server"
+                "jedi-language-server",
+                "efm-langserver"
             },
         },
     },
