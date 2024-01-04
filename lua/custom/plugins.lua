@@ -19,7 +19,8 @@ local plugins = {
                 "clangd",
                 "ember-language-server",
                 "biome",
-                "ast-grep"
+                "ast-grep",
+                "jedi-language-server"
             },
         },
     },
