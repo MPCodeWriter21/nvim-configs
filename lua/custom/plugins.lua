@@ -16,7 +16,10 @@ local plugins = {
                 "glow",
                 "marksman",
                 "clang-formatter",
-                "clangd"
+                "clangd",
+                "ember-language-server",
+                "biome",
+                "ast-grep"
             },
         },
     },
@@ -46,7 +49,7 @@ local plugins = {
     },
     {
         "mfussenegger/nvim-dap-python",
-        ft = {"python"},
+        ft = { "python" },
         dependencies = {
             "mfussenegger/nvim-dap",
             "rcarriga/nvim-dap-ui",
@@ -63,20 +66,20 @@ local plugins = {
             local dap = require("dap")
             local dapui = require("dapui")
             dapui.setup()
-        dap.listeners.after.event_initialized["dapui_config"] = function()
+            dap.listeners.after.event_initialized["dapui_config"] = function()
                 dapui.open()
             end
-        dap.listeners.after.event_terminated["dapui_config"] = function()
+            dap.listeners.after.event_terminated["dapui_config"] = function()
                 dapui.close()
             end
-        dap.listeners.after.event_exited["dapui_config"] = function()
+            dap.listeners.after.event_exited["dapui_config"] = function()
                 dapui.close()
             end
         end
     },
     {
         "python-lsp/python-lsp-server",
-        ft = {"python"},
+        ft = { "python" },
     },
     {
         "kamykn/spelunker.vim",
@@ -93,7 +96,7 @@ local plugins = {
     --     config = function()
     --         -- Setup black
     --         vim.g.vim_filetype_formatter_commands = {
-    --             python = 'yapf --no-local-style --style ~/.config/nvim/lua/custom/configs/style.yapf | isort --ca --ac --ls --ot -l 88 -q - | docformatter -', 
+    --             python = 'yapf --no-local-style --style ~/.config/nvim/lua/custom/configs/style.yapf | isort --ca --ac --ls --ot -l 88 -q - | docformatter -',
     --         }
     --         -- Keybindings for Normal, Visual and Insert mods
     --         vim.keymap.set('n', '<C-A-k>', ':FiletypeFormat<CR>')
@@ -123,7 +126,7 @@ local plugins = {
         'MPCodeWriter21/vim-templates',
         lazy = false,
         config = function()
-            vim.g.tmpl_search_paths = {'~/.vim-templates'}
+            vim.g.tmpl_search_paths = { '~/.vim-templates' }
             vim.g.tmpl_author_name = "Mehrad Pooryoussof"
             vim.g.tmpl_company = "CodeWriter21"
             vim.g.tmpl_author_email = "CodeWriter21@gmail.com"
@@ -184,6 +187,11 @@ local plugins = {
     -- {
     --     "TabbyML/vim-tabby",
     --     event = "VeryLazy"
-    -- }
+    -- },
+    {
+        "sourcegraph/sg.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim" ]] },
+        event = "VeryLazy"
+    },
 }
 return plugins
