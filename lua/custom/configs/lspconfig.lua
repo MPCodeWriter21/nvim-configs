@@ -90,9 +90,9 @@ lspconfig.ccls.setup {
     filetypes = { "c", "cpp" }
 }
 
-require("sg").setup {
-    on_attach = on_attach
-}
+-- require("sg").setup {
+--     on_attach = on_attach
+-- }
 
 -- Javascript
 lspconfig.biome.setup {

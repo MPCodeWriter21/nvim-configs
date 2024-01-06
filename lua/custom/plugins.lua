@@ -188,10 +188,10 @@ local plugins = {
     --     "TabbyML/vim-tabby",
     --     event = "VeryLazy"
     -- },
-    {
-        "sourcegraph/sg.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim" ]] },
-        event = "VeryLazy"
-    },
+    -- {
+    --     "sourcegraph/sg.nvim",
+    --     dependencies = { "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim" ]] },
+    --     event = "VeryLazy"
+    -- },
 }
 return plugins
