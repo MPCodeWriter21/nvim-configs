@@ -19,7 +19,8 @@ local plugins = {
                 "biome",
                 "ast-grep",
                 "jedi-language-server",
-                "efm-langserver"
+                "efm-langserver",
+                "bash-language-server"
             },
         },
     },
