@@ -1,3 +1,27 @@
+local function convert_path(path)
+    local drive_letter, rest_of_path = path:match("^([A-Za-z]):(.*)")
+
+    if drive_letter then
+        -- Convert Windows-style path to Unix-style path
+        local unix_path = "/" .. drive_letter:lower() .. rest_of_path:gsub("\\", "/")
+        return unix_path
+    else
+        -- Path is already in Unix-style, return as is
+        return path
+    end
+end
+local function adjust_path_separator(path)
+    if package.config:sub(1, 1) == "\\" then
+        -- Windows platform, replace forward slashes with backslashes
+        return path:gsub("/", "\\")
+    else
+        -- Non-Windows platform, return as is
+        return path
+    end
+end
+
+
+
 local plugins = {
     {
         "williamboman/mason.nvim",
@@ -86,6 +110,13 @@ local plugins = {
         "kamykn/spelunker.vim",
         lazy = false,
         config = function()
+            -- Make sure spell directory exists
+            vim.fn.mkdir(vim.fn.stdpath('config') .. '/spell', 'p')
+            -- print(vim.fn.stdpath('config') .. adjust_path_separator('/spell/custom-en.utf-8.add'))
+            -- Wait for user to press enter
+            -- vim.fn.input("Press enter to continue...")
+            vim.cmd(':set spellfile="' ..
+                vim.fn.stdpath('config') .. adjust_path_separator('/spell/custom-en.utf-8.add') .. '"')
             vim.opt.updatetime = 512
             vim.g.spelunker_check_type = 2
             vim.g.spelunker_disable_uri_checking = 1
@@ -134,13 +165,13 @@ local plugins = {
             vim.g.tmpl_license = "Apache License 2.0"
         end
     },
-    -- {
-    --     'Exafunction/codeium.vim',
-    --     event = "VeryLazy",
-    --     config = function()
-    --         vim.keymap.set('i', '<Tab>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-    --     end
-    -- },
+    {
+        'MPCodeWriter21/codeium.vim',
+        event = "VeryLazy",
+        config = function()
+            vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+        end
+    },
     -- {
     --     "github/copilot.vim",
     --     event = "VeryLazy",
@@ -150,14 +181,14 @@ local plugins = {
     --         -- vim.keymap.set('i', '<Tab>', function () return vim.fn['copilot#Accept']() end, { expr = true })
     --     end
     -- },
-    {
-        'huggingface/llm.nvim',
-        commit = "7bf97d0",
-        event = "VeryLazy",
-        config = function()
-            require "custom.configs.llm"
-        end
-    },
+    -- {
+    --     'huggingface/llm.nvim',
+    --     commit = "7bf97d0",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require "custom.configs.llm"
+    --     end
+    -- },
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
