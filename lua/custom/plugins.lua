@@ -21,7 +21,6 @@ local function adjust_path_separator(path)
 end
 
 
-
 local plugins = {
     {
         "williamboman/mason.nvim",
@@ -164,11 +163,22 @@ local plugins = {
             vim.g.tmpl_license = "Apache License 2.0"
         end
     },
+    -- {
+    --     'MPCodeWriter21/codeium.vim',
+    --     event = "VeryLazy",
+    --     config = function()
+    --         vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+    --     end
+    -- },
     {
-        'MPCodeWriter21/codeium.vim',
+        "Exafunction/codeium.nvim",
         event = "VeryLazy",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
         config = function()
-            vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+            require("codeium").setup({})
         end
     },
     -- {
@@ -180,14 +190,14 @@ local plugins = {
     --         -- vim.keymap.set('i', '<Tab>', function () return vim.fn['copilot#Accept']() end, { expr = true })
     --     end
     -- },
-    -- {
-    --     'huggingface/llm.nvim',
-    --     commit = "7bf97d0",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require "custom.configs.llm"
-    --     end
-    -- },
+    {
+        'huggingface/llm.nvim',
+        commit = "7bf97d0",
+        event = "VeryLazy",
+        config = function()
+            require "custom.configs.llm"
+        end
+    },
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
