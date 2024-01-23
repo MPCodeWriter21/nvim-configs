@@ -171,17 +171,6 @@ local plugins = {
     --         vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
     --     end
     -- },
-    {
-        "Exafunction/codeium.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
-        },
-        config = function()
-            require("codeium").setup({})
-        end
-    },
     -- {
     --     "github/copilot.vim",
     --     event = "VeryLazy",
@@ -267,4 +256,28 @@ local plugins = {
         end
     },
 }
+
+
+-- Check if the operating system is not android
+local os_name = vim.loop.os_uname().release -- e.g. 5.10.168-android12-9-00002-gf3c080171fd5-ab10346004
+if os_name:find("android") == nil then
+    -- Add Codeium to the plugins
+    table.insert(plugins,
+        {
+            {
+                "Exafunction/codeium.nvim",
+                event = "VeryLazy",
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                    "hrsh7th/nvim-cmp",
+                },
+                config = function()
+                    require("codeium").setup({})
+                end
+            },
+        }
+    )
+end
+
+
 return plugins
