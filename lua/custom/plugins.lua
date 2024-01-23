@@ -43,7 +43,6 @@ local plugins = {
                 "biome",
                 "ast-grep",
                 "jedi-language-server",
-                "efm-langserver",
                 "bash-language-server"
             },
         },
