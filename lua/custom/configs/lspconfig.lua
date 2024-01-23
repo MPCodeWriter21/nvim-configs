@@ -112,11 +112,11 @@ lspconfig.ast_grep.setup {
     capabilities = capabilities
 }
 
-lspconfig.efm.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    init_options = { documentFormatting = true }
-}
+-- lspconfig.efm.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     init_options = { documentFormatting = true }
+-- }
 
 lspconfig.tsserver.setup {
     on_attach = on_attach,

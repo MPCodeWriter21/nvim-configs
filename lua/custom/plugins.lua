@@ -42,7 +42,8 @@ local plugins = {
                 "biome",
                 "ast-grep",
                 "jedi-language-server",
-                "bash-language-server"
+                "bash-language-server",
+                "ruff-lsp"
             },
         },
     },
