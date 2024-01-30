@@ -43,7 +43,8 @@ local plugins = {
                 "ast-grep",
                 "jedi-language-server",
                 "bash-language-server",
-                "ruff-lsp"
+                "ruff-lsp",
+                "ltex-ls"
             },
         },
     },

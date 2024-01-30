@@ -128,3 +128,13 @@ lspconfig.bashls.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
+
+lspconfig.ltex.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {
+        "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex",
+        "pandoc", "quarto", "rmd", "text", "python", "c", "c++", "toml"
+    },
+    flags = { debounce_text_changes = 300 },
+})
