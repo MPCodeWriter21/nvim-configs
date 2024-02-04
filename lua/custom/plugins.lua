@@ -43,7 +43,8 @@ local plugins = {
                 "ast-grep",
                 "jedi-language-server",
                 "bash-language-server",
-                "ruff-lsp"
+                "ruff-lsp",
+                "ltex-ls"
             },
         },
     },
@@ -114,8 +115,20 @@ local plugins = {
             -- print(vim.fn.stdpath('config') .. adjust_path_separator('/spell/custom-en.utf-8.add'))
             -- Wait for user to press enter
             -- vim.fn.input("Press enter to continue...")
-            vim.cmd(':set spellfile="' ..
-                vim.fn.stdpath('config') .. adjust_path_separator('/spell/custom-en.utf-8.add') .. '"')
+            -- vim.cmd(':set spellfile="' ..
+            --     vim.fn.stdpath('config') .. adjust_path_separator('/spell/custom-en.utf-8.add') .. '"')
+
+            local config_path = vim.fn.stdpath('config')
+            -- Check if we got multiple config paths (For the sake of lsp)
+            if (type(config_path) == "string") then
+                -- Set the spell file
+                local spellfile = adjust_path_separator(
+                    vim.fs.joinpath(config_path, 'spell', 'custom.en.utf-8.add')
+                )
+                -- vim.fn.input(spellfile)
+                -- vim.o.spellfile = spellfile
+            end
+
             vim.opt.updatetime = 512
             vim.g.spelunker_check_type = 2
             vim.g.spelunker_disable_uri_checking = 1
@@ -253,6 +266,14 @@ local plugins = {
                     auto_insert = true,
                 },
             }
+        end
+    },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        event = "VeryLazy",
+        build = 'make',
+        config = function()
+            require("telescope").load_extension("fzf")
         end
     },
 }
