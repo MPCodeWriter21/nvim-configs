@@ -20,6 +20,7 @@ local function adjust_path_separator(path)
     end
 end
 
+local os_name = vim.loop.os_uname().release -- e.g. 5.10.168-android12-9-00002-gf3c080171fd5-ab10346004
 
 local plugins = {
     {
@@ -110,6 +111,9 @@ local plugins = {
         "kamykn/spelunker.vim",
         lazy = false,
         config = function()
+            if os_name:find("android") ~= nil then
+                return
+            end
             -- Make sure spell directory exists
             vim.fn.mkdir(vim.fn.stdpath('config') .. '/spell', 'p')
             -- print(vim.fn.stdpath('config') .. adjust_path_separator('/spell/custom-en.utf-8.add'))
@@ -279,13 +283,36 @@ local plugins = {
             }
         end
     },
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        event = "VeryLazy",
-        build = 'make',
-        config = function()
-            require("telescope").load_extension("fzf")
-        end
-    },
 }
+
+
+-- Check if the operating system is not android
+if os_name:find("android") == nil then
+    -- Add Codeium to the plugins
+    table.insert(plugins,
+        {
+            {
+                "Exafunction/codeium.nvim",
+                event = "VeryLazy",
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                    "hrsh7th/nvim-cmp",
+                },
+                config = function()
+                    require("codeium").setup({})
+                end
+            },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                event = "VeryLazy",
+                build = 'make',
+                config = function()
+                    require("telescope").load_extension("fzf")
+                end
+            },
+        }
+    )
+end
+
+
 return plugins
