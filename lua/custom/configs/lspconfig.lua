@@ -138,3 +138,10 @@ lspconfig.ltex.setup({
     },
     flags = { debounce_text_changes = 300 },
 })
+
+-- Java lsp
+lspconfig.jdtls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { 'jdtls' }
+}
