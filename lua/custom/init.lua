@@ -8,6 +8,9 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
 vim.o.conceallevel = 2
 
+-- Custom bg color for markdown code blocks
+vim.api.nvim_set_hl(0, "@codechunk", { bg = "#303945" })
+
 -- Define function to format and save the current file
 function formatAndSave()
     local file_path = vim.fn.expand('%')
