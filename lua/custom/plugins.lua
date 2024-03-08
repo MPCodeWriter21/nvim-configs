@@ -19,6 +19,29 @@ local function adjust_path_separator(path)
         return path
     end
 end
+local function split(inputstr, sep)
+    if sep == nil then
+        sep = "%s"
+    end
+    local t = {}
+    for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+        table.insert(t, str)
+    end
+    return t
+end
+
+local function format_table(o)
+    if type(o) == 'table' then
+        local s = '{ '
+        for k, v in pairs(o) do
+            if type(k) ~= 'number' then k = '"' .. k .. '"' end
+            s = s .. '[' .. k .. '] = ' .. format_table(v) .. ','
+        end
+        return s .. '} '
+    else
+        return tostring(o)
+    end
+end
 
 local os_name = vim.loop.os_uname().release -- e.g. 5.10.168-android12-9-00002-gf3c080171fd5-ab10346004
 
@@ -275,7 +298,7 @@ local plugins = {
     },
     {
         "mfussenegger/nvim-jdtls",
-        event = "VeryLazy",
+        ft = { "java" },
         config = function()
             local config = {
                 cmd = { 'jdtls' },
@@ -283,6 +306,23 @@ local plugins = {
                     { 'gradlew', '.git', 'mvnw' }, { upward = true })[1]
                 ),
             }
+
+            local sep = ';'
+            if os_name:find("windows") == nil then
+                sep = ':'
+            end
+            config.settings = {
+                java = {
+                    project = {
+                        -- Load the $CLASSPATH and split it by :
+                        referencedLibraries = split(os.getenv('CLASSPATH'), sep),
+                        -- referencedLibraries = {
+                        --     "/data/data/com.termux/files/home/java/jar/org.json-1.6-20240205.jar"
+                        -- },
+                    }
+                }
+            }
+            -- vim.fn.input(format_table(config))
             require('jdtls').start_or_attach(config)
         end
     }
