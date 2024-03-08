@@ -398,7 +398,15 @@ local plugins = {
                 },
             },
         },
-    }
+    },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        event = "VeryLazy",
+        build = 'make',
+        config = function()
+            require("telescope").load_extension("fzf")
+        end
+    },
 }
 
 
@@ -416,14 +424,6 @@ if os_name:find("android") == nil then
                 },
                 config = function()
                     require("codeium").setup({})
-                end
-            },
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                event = "VeryLazy",
-                build = 'make',
-                config = function()
-                    require("telescope").load_extension("fzf")
                 end
             },
         }
