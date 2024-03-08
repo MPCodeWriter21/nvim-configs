@@ -45,7 +45,8 @@ local plugins = {
                 "jedi-language-server",
                 "bash-language-server",
                 "ruff-lsp",
-                "ltex-ls"
+                "ltex-ls",
+                "rust-analyzer"
             },
         },
     },

@@ -138,3 +138,16 @@ lspconfig.ltex.setup({
     },
     flags = { debounce_text_changes = 300 },
 })
+
+-- Rust
+lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ['rust-analyzer'] = {
+            diagnostics = {
+                enable = false,
+            }
+        }
+    }
+}
