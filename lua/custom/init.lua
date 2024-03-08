@@ -38,7 +38,7 @@ function formatAndSave()
         end
         vim.fn.rename(tempfile, file_path)
     elseif file_path:match('.*%.cpp$') then
-        local clang_format_command = 'clang-format --style Microsoft'
+        local clang_format_command = 'clang-format --style file'
         -- Run the clang-format command with the file contents as input and capture the output
         local formatted_text = vim.fn.system(clang_format_command, file_contents)
         -- Write the formatted text back to a tempfile
