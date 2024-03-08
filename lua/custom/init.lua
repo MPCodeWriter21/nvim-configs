@@ -6,6 +6,7 @@ vim.opt.smarttab = true
 vim.opt.softtabstop = 4
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 4
+vim.o.conceallevel = 2
 
 -- Define function to format and save the current file
 function formatAndSave()
