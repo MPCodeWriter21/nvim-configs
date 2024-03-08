@@ -43,7 +43,8 @@ local function format_table(o)
     end
 end
 
-local os_name = vim.loop.os_uname().release -- e.g. 5.10.168-android12-9-00002-gf3c080171fd5-ab10346004
+local os_name = format_table(vim.loop.os_uname()):lower()
+-- vim.fn.input(os_name)
 
 local plugins = {
     {
