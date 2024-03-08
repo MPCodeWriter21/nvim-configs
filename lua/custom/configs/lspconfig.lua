@@ -151,3 +151,10 @@ lspconfig.rust_analyzer.setup {
         }
     }
 }
+
+-- Java lsp
+lspconfig.jdtls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { 'jdtls' }
+}
