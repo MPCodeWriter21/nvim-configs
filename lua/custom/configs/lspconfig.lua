@@ -158,3 +158,15 @@ lspconfig.jdtls.setup {
     capabilities = capabilities,
     cmd = { 'jdtls' }
 }
+
+-- Yaml
+lspconfig.yamlls.setup {
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://json.schemastore.org/pre-commit-config.json"] = "/.pre-commit-config.yaml"
+            },
+        },
+    }
+}
