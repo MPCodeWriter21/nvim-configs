@@ -85,11 +85,11 @@ lspconfig.cmake.setup {
     filetypes = { "cmake" }
 }
 
-lspconfig.ccls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "c", "cpp" }
-}
+-- lspconfig.ccls.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "c", "cpp" }
+-- }
 
 -- require("sg").setup {
 --     on_attach = on_attach
