@@ -73,9 +73,13 @@ vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({ border = "rounded
 
 -- C++
 lspconfig.clangd.setup {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        client.server_capabilities.signatureHelpProvider = false
+        on_attach(clinet, bufnr)
+    end,
     capabilities = capabilities,
-    filetypes = { "c", "cpp" }
+    cmd = {'clangd', '--completion-style=detailed'},
+    filetypes = { "c", "cpp" },
 }
 
 lspconfig.cmake.setup {
