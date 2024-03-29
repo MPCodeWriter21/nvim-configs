@@ -71,7 +71,9 @@ local plugins = {
                 "ruff-lsp",
                 "ltex-ls",
                 "rust-analyzer",
-                "jdtls"
+                "jdtls",
+                "yaml-language-server",
+                "prosemd-lsp"
             },
         },
     },
