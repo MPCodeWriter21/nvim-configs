@@ -100,6 +100,9 @@ local plugins = {
     -- },
     {
         "mfussenegger/nvim-dap",
+        dependencies = {
+            "nvim-neotest/nvim-nio"
+        }
     },
     {
         "mfussenegger/nvim-dap-python",
