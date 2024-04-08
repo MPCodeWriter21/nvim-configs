@@ -23,19 +23,19 @@ lspconfig.jsonls.setup {
     capabilities = capabilities,
 }
 
-lspconfig.pylsp.setup {
-    on_attach = on_attach,
-    settings = {
-        pylsp = {
-            plugins = {
-                pycodestyle = {
-                    ignore = {},
-                    maxLineLength = 88
-                }
-            }
-        }
-    }
-}
+-- lspconfig.pylsp.setup {
+--     on_attach = on_attach,
+--     settings = {
+--         pylsp = {
+--             plugins = {
+--                 pycodestyle = {
+--                     ignore = {},
+--                     maxLineLength = 88
+--                 }
+--             }
+--         }
+--     }
+-- }
 
 -- Markdown LSP
 lspconfig.prosemd_lsp.setup {
