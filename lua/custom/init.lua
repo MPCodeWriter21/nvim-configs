@@ -71,22 +71,13 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true } -- Options
 )
 
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#fold_expr()"
--- vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
-
--- vim.opt.foldmethod = "indent"
--- vim.opt.foldnestmax = 2
-
--- function format_code()
---    output = vim.fn.system(
---        'yapf --no-local-style --style %localappdata%/nvim/lua/custom/configs/style.yapf | isort --ca --ac --ls --ot -l 88 -q - | docformatter -',
---         vim.fn['join'](vim.fn['getline'](1, '$'), "\n")
---     )
---     echo output
--- end
-
--- vim.keymap.set('n', '<C-A-l>', 'format_code')
--- vim.keymap.set('i', '<C-A-l>', 'format_code')
--- vim.keymap.set('n', '<C-A-l>', 'format_code')
-
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
