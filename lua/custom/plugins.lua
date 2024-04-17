@@ -239,14 +239,14 @@ local plugins = {
     --         -- vim.keymap.set('i', '<Tab>', function () return vim.fn['copilot#Accept']() end, { expr = true })
     --     end
     -- },
-    {
-        'huggingface/llm.nvim',
-        commit = "7bf97d0",
-        event = "VeryLazy",
-        config = function()
-            require "custom.configs.llm"
-        end
-    },
+    -- {
+    --     'MPCodeWriter21/llm.nvim',
+    --     -- commit = "7bf97d0",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require "custom.configs.llm"
+    --     end
+    -- },
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
