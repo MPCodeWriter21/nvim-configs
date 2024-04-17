@@ -75,8 +75,25 @@ vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({ border = "rounded
 lspconfig.clangd.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = {'clangd', '--completion-style=detailed'},
-    filetypes = { "c", "cpp" },
+    cmd = {
+        -- see clangd --help-hidden
+        "clangd",
+        "--background-index",
+        -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+        -- to add more checks, create .clang-tidy file in the root directory
+        -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+        "--clang-tidy",
+        "--completion-style=bundled",
+        "--cross-file-rename",
+        "--header-insertion=iwyu",
+    },
+    filetypes = { "c", "cpp", "cxx", "h", "hpp", "hxx" },
+    init_options = {
+        clangdFileStatus = true, -- Provides information about activity on clangd’s per-file worker thread
+        usePlaceholders = true,
+        completeUnimported = true,
+        semanticHighlighting = true,
+    }
 }
 
 lspconfig.cmake.setup {
