@@ -20,7 +20,8 @@ function formatAndSave()
 
     if file_path:match('.*%.py$') then
         -- Define the commands to run
-        local yapf_command = 'yapf --no-local-style --style ' .. vim.fn.stdpath('config') .. '/lua/custom/configs/style.yapf'
+        local yapf_command = 'yapf --no-local-style --style ' ..
+            vim.fn.stdpath('config') .. '/lua/custom/configs/style.yapf'
         local isort_command = 'isort --ca --ac --ls --ot -l 88 -q '
         local docformatter_command = 'docformatter -i --black '
 
@@ -50,10 +51,10 @@ function formatAndSave()
         vim.fn.writefile(vim.fn.split(formatted_text, "\n"), tempfile)
         -- Move the temp file to the current file's location
         if vim.fn.has('mac') then
-            local permission = vim.fn.trim(vim.fn.system('stat -f "%Mp%Lp"  '.. file_path))
-            vim.fn.system('chmod "'.. permission.. '"  '.. tempfile)
+            local permission = vim.fn.trim(vim.fn.system('stat -f "%Mp%Lp"  ' .. file_path))
+            vim.fn.system('chmod "' .. permission .. '"  ' .. tempfile)
         else
-            vim.fn.system('chmod --reference='.. vim.fn.expand('%')..''.. tempfile)
+            vim.fn.system('chmod --reference=' .. vim.fn.expand('%') .. '' .. tempfile)
         end
         vim.fn.rename(tempfile, file_path)
     else
@@ -62,22 +63,55 @@ function formatAndSave()
     vim.api.nvim_command('silent edit!')
 end
 
-
 -- Define the keymap to trigger the formatAndSave function
 vim.api.nvim_set_keymap(
-  'n', -- Mode: normal
-  '<C-A-k>', -- Key sequence: Ctrl+Alt+L
-  '<Cmd>lua formatAndSave()<CR>', -- Command to execute
-  { noremap = true, silent = true } -- Options
+    'n',                              -- Mode: normal
+    '<C-A-k>',                        -- Key sequence: Ctrl+Alt+L
+    '<Cmd>lua formatAndSave()<CR>',   -- Command to execute
+    { noremap = true, silent = true } -- Options
 )
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
+
+-- Define the keymap to put parenthesis, brackets, braces, quotations and backtick
+-- around visually selected text on command
+local map = function(text)
+    -- function()
+    --         vim.cmd 'd'
+    --         local column = vim.api.nvim_win_get_cursor(0)[1]
+    --         local length = vim.fn.col('$') - 1
+    --         vim.notify(tostring(column))
+    --         vim.notify(tostring(length))
+    --         local command = ''
+    --         if column == length - 1 then
+    --             command = command .. 'a'
+    --         else
+    --             command = command .. 'i'
+    --         end
+    --         command = command .. text .. '<Esc>P'
+    --         vim.api.nvim_cmd(command, { noremap = true, silent = true })
+    --     end
+    vim.keymap.set(
+        'v',                    -- Mode: visual
+        string.sub(text, 1, 1), -- First character of the text as the Key sequence
+        'd' .. 'i' .. text .. '<Esc>P',
+        { noremap = true, silent = true } -- Options
+    )
+end
+
+map '()'
+map '[]'
+map '<>'
+map '{}'
+map "''"
+map '""'
+map '``'
