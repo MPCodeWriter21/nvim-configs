@@ -273,8 +273,15 @@ local plugins = {
     },
     {
         "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        event = "VeryLazy"
+        event = "VimEnter",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "folke/trouble.nvim",
+            "nvim-telescope/telescope.nvim"
+        },
+        config = function ()
+            require('todo-comments').setup()
+        end
     },
     {
         'stevearc/aerial.nvim',
