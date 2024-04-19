@@ -110,7 +110,6 @@ end
 
 map '()'
 map '[]'
-map '<>'
 map '{}'
 map "''"
 map '""'
