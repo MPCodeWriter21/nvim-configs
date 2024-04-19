@@ -73,8 +73,20 @@ local plugins = {
                 "rust-analyzer",
                 "jdtls",
                 "yaml-language-server",
-                "prosemd-lsp"
+                "prosemd-lsp",
+                "codelldb"
             },
+        },
+    },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        event = "VeryLazy",
+        dependncies = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap"
+        },
+        opts = {
+            handlers = {},
         },
     },
     {
@@ -102,7 +114,10 @@ local plugins = {
         "mfussenegger/nvim-dap",
         dependencies = {
             "nvim-neotest/nvim-nio"
-        }
+        },
+        config = function(_, _)
+            require('core.utils').load_mappings('dap')
+        end
     },
     {
         "mfussenegger/nvim-dap-python",
@@ -119,6 +134,7 @@ local plugins = {
     {
         "rcarriga/nvim-dap-ui",
         dependencies = "mfussenegger/nvim-dap",
+        event = "VeryLazy",
         config = function()
             local dap = require("dap")
             local dapui = require("dapui")
@@ -372,7 +388,7 @@ local plugins = {
                 },
             },
             ui = {
-                enable = true, -- set to false to disable all additional syntax features
+                enable = true,         -- set to false to disable all additional syntax features
                 update_debounce = 200, -- update delay after a text change (in milliseconds)
                 -- Define how various check-boxes are displayed
                 checkboxes = {
