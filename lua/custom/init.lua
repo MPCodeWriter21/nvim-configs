@@ -101,8 +101,8 @@ local map = function(text)
     --         vim.api.nvim_cmd(command, { noremap = true, silent = true })
     --     end
     vim.keymap.set(
-        'v',                    -- Mode: visual
-        string.sub(text, 1, 1), -- First character of the text as the Key sequence
+        'v',                              -- Mode: visual
+        string.sub(text, 1, 1),           -- First character of the text as the Key sequence
         'd' .. 'i' .. text .. '<Esc>P',
         { noremap = true, silent = true } -- Options
     )
@@ -115,3 +115,4 @@ map '{}'
 map "''"
 map '""'
 map '``'
+
