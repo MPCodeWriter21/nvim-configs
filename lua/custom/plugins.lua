@@ -428,6 +428,29 @@ local plugins = {
             require("telescope").load_extension("fzf")
         end
     },
+    {
+        "Zeioth/compiler.nvim",
+        event = "VeryLazy",
+        cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+        dependencies = { "stevearc/overseer.nvim" },
+        opts = {},
+        config = function(opts)
+            require('core.utils').load_mappings('compiler')
+            require('compiler').setup(opts)
+        end
+    },
+    {
+        "stevearc/overseer.nvim",
+        cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
+        opts = {
+            task_list = {
+                direction = "bottom",
+                min_height = 25,
+                max_height = 25,
+                default_detail = 1
+            },
+        },
+    },
 }
 
 
