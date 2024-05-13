@@ -42,7 +42,8 @@ function formatAndSave()
             vim.fn.system('chmod --reference=' .. vim.fn.expand('%') .. ' ' .. tempfile)
         end
         vim.fn.rename(tempfile, file_path)
-    elseif file_path:match('.*%.cpp$') or file_path:match('.*%.h$') then
+    elseif file_path:match('.*%.cpp$') or file_path:match('.*%.hpp$') or
+        file_path:match('.*%.c$') or file_path:match('.*%.h$') then
         local clang_format_command = 'clang-format --style file'
         -- Run the clang-format command with the file contents as input and capture the output
         local formatted_text = vim.fn.system(clang_format_command, file_contents)
@@ -114,4 +115,3 @@ map '{}'
 map "''"
 map '""'
 map '``'
-
