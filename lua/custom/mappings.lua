@@ -40,9 +40,16 @@ M.nvimtree = {
     plugin = true,
     n = {
 
-    -- Bookmark
-    ["bb"] = { '<cmd> lua require("nvim-tree.api").marks.toggle() <CR>', "Toggle Bookmark" },
+        -- Bookmark
+        ["bb"] = { '<cmd> lua require("nvim-tree.api").marks.toggle() <CR>', "Toggle Bookmark" },
 
+    }
+}
+
+M.quickfix = {
+    n = {
+        -- Bookmark
+        ["<C-m>"] = { '<cmd> cnext <CR>', "Go to the next item in the quickfix list." },
     }
 }
 
