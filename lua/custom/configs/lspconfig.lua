@@ -35,11 +35,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 
-lspconfig.pyright.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "python" }
-})
+-- lspconfig.pyright.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "python" }
+-- })
 
 lspconfig.jedi_language_server.setup {
     on_attach = on_attach,
