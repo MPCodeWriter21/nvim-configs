@@ -36,16 +36,6 @@ M.compiler = {
     }
 }
 
-M.nvimtree = {
-    plugin = true,
-    n = {
-
-        -- Bookmark
-        ["bb"] = { '<cmd> lua require("nvim-tree.api").marks.toggle() <CR>', "Toggle Bookmark" },
-
-    }
-}
-
 M.quickfix = {
     n = {
         -- Bookmark
