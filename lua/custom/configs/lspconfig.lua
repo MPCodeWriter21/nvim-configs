@@ -181,7 +181,7 @@ lspconfig.ltex.setup({
     capabilities = capabilities,
     filetypes = {
         "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex",
-        "pandoc", "quarto", "rmd", "text", "python", "c", "c++", "toml"
+        "pandoc", "quarto", "rmd", "text", "python", "c", "c++"
     },
     flags = { debounce_text_changes = 300 },
 })
