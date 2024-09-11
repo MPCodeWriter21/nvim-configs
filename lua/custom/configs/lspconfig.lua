@@ -165,10 +165,16 @@ lspconfig.ast_grep.setup {
 --     init_options = { documentFormatting = true }
 -- }
 
-lspconfig.tsserver.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "typescript", "typescriptreact" }
+lspconfig.ts_ls.setup {
+    init_options = {
+        plugins = {
+            {
+                name = "@vue/typescript-plugin",
+                location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+                languages = { "javascript", "typescript", "vue" },
+            },
+        },
+    },
 }
 
 lspconfig.bashls.setup {
