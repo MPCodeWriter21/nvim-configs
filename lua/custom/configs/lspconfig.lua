@@ -3,6 +3,7 @@ local on_attach = config.on_attach
 local capabilities = config.capabilities
 
 local lspconfig = require("lspconfig")
+local util = require 'lspconfig.util'
 
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -145,7 +146,22 @@ lspconfig.cmake.setup {
 lspconfig.biome.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = { "biome", "lsp-proxy", "--config-path=\"" .. vim.fn.stdpath("config") .. "/lua/custom/configs/biome.json\"" }
+    filetypes = {
+        'javascript',
+        'javascriptreact',
+        'json',
+        'jsonc',
+        'typescript',
+        'typescript.tsx',
+        'typescriptreact',
+        'astro',
+        'svelte',
+        'vue',
+        'css',
+    },
+    root_dir = util.root_pattern('biome.json', 'biome.jsonc'),
+    single_file_support = false,
+    cmd = { "biome", "lsp-proxy" }
 }
 
 lspconfig.ember.setup {
