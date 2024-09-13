@@ -59,6 +59,18 @@ function formatAndSave()
             vim.fn.system('chmod --reference=' .. vim.fn.expand('%') .. '' .. tempfile)
         end
         vim.fn.rename(tempfile, file_path)
+    elseif file_path:match('.*%.%yaml$') or file_path:match('.*%.%yml$') then
+        local yamlfmt_command = 'yamlfmt -'
+        local formatted_text = vim.fn.system(yamlfmt_command, file_contents)
+        local tempfile = vim.fn.tempname()
+        vim.fn.writefile(vim.fn.split(formatted_text, "\n"), tempfile)
+        if vim.fn.has('mac') then
+            local permission = vim.fn.trim(vim.fn.system('stat -f "%Mp%Lp"  ' .. file_path))
+            vim.fn.system('chmod "' .. permission .. '"  ' .. tempfile)
+        else
+            vim.fn.system('chmod --reference=' .. vim.fn.expand('%') .. ' ' .. tempfile)
+        end
+        vim.fn.rename(tempfile, file_path)
     else
         print("Not a supported file type")
     end
@@ -110,9 +122,6 @@ local map = function(text)
     )
 end
 
-map '()'
-map '[]'
-map '{}'
 map "''"
 map '""'
 map '``'

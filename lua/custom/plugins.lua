@@ -76,7 +76,8 @@ local plugins = {
                 "prosemd-lsp",
                 "codelldb",
                 "biome",
-                "typescript-language-server"
+                "typescript-language-server",
+                "yamlfmt"
             },
         },
     },
