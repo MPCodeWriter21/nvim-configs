@@ -75,7 +75,6 @@ local plugins = {
                 "yaml-language-server",
                 "prosemd-lsp",
                 "codelldb",
-                "biome",
                 "typescript-language-server",
                 "yamlfmt"
             },
@@ -124,7 +123,7 @@ local plugins = {
         "nvimtools/none-ls.nvim",
         event = "VeryLazy",
         opts = function()
-            return require  "custom.configs.none-ls"
+            return require "custom.configs.none-ls"
         end,
     },
     {
@@ -641,6 +640,15 @@ local plugins = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         }
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
     }
 }
 
