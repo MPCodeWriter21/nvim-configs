@@ -120,13 +120,13 @@ local plugins = {
     --         return require "custom.configs.nvimtree"
     --     end,
     -- },
-    -- {
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     event = "VeryLazy",
-    --     opts = function()
-    --         return require  "custom.configs.null-ls"
-    --     end,
-    -- },
+    {
+        "nvimtools/none-ls.nvim",
+        event = "VeryLazy",
+        opts = function()
+            return require  "custom.configs.none-ls"
+        end,
+    },
     {
         "mfussenegger/nvim-dap",
         dependencies = {
