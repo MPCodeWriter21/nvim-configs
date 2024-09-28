@@ -244,33 +244,15 @@ local plugins = {
             vim.g.tmpl_license = "Apache License 2.0"
         end
     },
-    -- {
-    --     'MPCodeWriter21/codeium.vim',
-    --     event = "VeryLazy",
-    --     config = function()
-    --         vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-    --     end
-    -- },
-    -- {
-    --     "Exafunction/codeium.nvim",
-    --     event = "VeryLazy",
-    --     dependencies = {
-    --         "nvim-lua/plenary.nvim",
-    --         "hrsh7th/nvim-cmp",
-    --     },
-    --     config = function()
-    --         require("codeium").setup({})
-    --     end
-    -- },
-    -- {
-    --     "github/copilot.vim",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         vim.g.copilot_no_tab_map = true
-    --         vim.g.copilot_assume_mapped = true
-    --         -- vim.keymap.set('i', '<Tab>', function () return vim.fn['copilot#Accept']() end, { expr = true })
-    --     end
-    -- },
+    {
+        "github/copilot.vim",
+        event = "VeryLazy",
+        config = function()
+            -- vim.g.copilot_no_tab_map = true
+            -- vim.g.copilot_assume_mapped = true
+            -- vim.keymap.set('i', '<Tab>', function () return vim.fn['copilot#Accept']() end, { expr = true })
+        end
+    },
     -- {
     --     'MPCodeWriter21/llm.nvim',
     --     -- commit = "7bf97d0",
@@ -511,136 +493,136 @@ local plugins = {
     --     opts = {},
     --     config = function(_, opts) require 'lsp_signature'.setup(opts) end
     -- },
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-            cmdline = {
-                view = "cmdline",
-            },
-            commands = {
-                history = {
-                    -- options for the message history that you get with `:Noice`
-                    view = "split",
-                    opts = { enter = true, format = "details" },
-                    filter = {
-                        any = {
-                            { event = "notify" },
-                            { error = true },
-                            { warning = true },
-                            { event = "msg_show", kind = { "" } },
-                            { event = "lsp",      kind = "message" },
-                        },
-                    },
-                },
-                -- :Noice last
-                last = {
-                    view = "popup",
-                    opts = { enter = true, format = "details" },
-                    filter = {
-                        any = {
-                            { event = "notify" },
-                            { error = true },
-                            { warning = true },
-                            { event = "msg_show", kind = { "" } },
-                            { event = "lsp",      kind = "message" },
-                        },
-                    },
-                    filter_opts = { count = 1 },
-                },
-                -- :Noice errors
-                errors = {
-                    -- options for the message history that you get with `:Noice`
-                    view = "popup",
-                    opts = { enter = true, format = "details" },
-                    filter = { error = true },
-                    filter_opts = { reverse = true },
-                },
-                all = {
-                    -- options for the message history that you get with `:Noice`
-                    view = "split",
-                    opts = { enter = true, format = "details" },
-                    filter = {},
-                },
-            },
-            lsp = {
-                progress = {
-                    enabled = true,
-                    -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
-                    -- See the section on formatting for more details on how to customize.
-                    --- @type NoiceFormat|string
-                    format = "lsp_progress",
-                    --- @type NoiceFormat|string
-                    format_done = "lsp_progress_done",
-                    throttle = 1000 / 30, -- frequency to update lsp progress message
-                    view = "mini",
-                },
-                override = {
-                    -- override the default lsp markdown formatter with Noice
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
-                    -- override the lsp markdown formatter with Noice
-                    ["vim.lsp.util.stylize_markdown"] = false,
-                    -- override cmp documentation with Noice (needs the other options to work)
-                    ["cmp.entry.get_documentation"] = false,
-                },
-                hover = {
-                    enabled = true,
-                    silent = false, -- set to true to not show a message if hover is not available
-                    view = nil,     -- when nil, use defaults from documentation
-                    ---@type NoiceViewOptions
-                    opts = {},      -- merged with defaults from documentation
-                },
-                signature = {
-                    enabled = true,
-                    auto_open = {
-                        enabled = true,
-                        trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-                        luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-                        throttle = 50,  -- Debounce lsp signature help request by 50ms
-                    },
-                    view = nil,         -- when nil, use defaults from documentation
-                    ---@type NoiceViewOptions
-                    opts = {},          -- merged with defaults from documentation
-                },
-                message = {
-                    -- Messages shown by lsp servers
-                    enabled = true,
-                    view = "notify",
-                    opts = {},
-                },
-                -- defaults for hover and signature help
-                documentation = {
-                    view = "hover",
-                    ---@type NoiceViewOptions
-                    opts = {
-                        lang = "markdown",
-                        replace = true,
-                        render = "plain",
-                        format = { "{message}" },
-                        win_options = { concealcursor = "n", conceallevel = 3 },
-                    },
-                },
-            },
-            smart_move = {
-                -- noice tries to move out of the way of existing floating windows.
-                enabled = true, -- you can disable this behaviour here
-                -- add any filetypes here, that shouldn't trigger smart move.
-                excluded_filetypes = { "cmp_menu", "cmp_docs", "notify" },
-            },
-            -- you can enable a preset for easier configuration
-            presets = {
-                bottom_search = true,         -- use a classic bottom cmdline for search
-                command_palette = false,      -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true,        -- add a border to hover docs and signature help
-            },
-        },
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        }
-    },
+    -- {
+    --     "folke/noice.nvim",
+    --     event = "VeryLazy",
+    --     opts = {
+    --         cmdline = {
+    --             view = "cmdline",
+    --         },
+    --         commands = {
+    --             history = {
+    --                 -- options for the message history that you get with `:Noice`
+    --                 view = "split",
+    --                 opts = { enter = true, format = "details" },
+    --                 filter = {
+    --                     any = {
+    --                         { event = "notify" },
+    --                         { error = true },
+    --                         { warning = true },
+    --                         { event = "msg_show", kind = { "" } },
+    --                         { event = "lsp",      kind = "message" },
+    --                     },
+    --                 },
+    --             },
+    --             -- :Noice last
+    --             last = {
+    --                 view = "popup",
+    --                 opts = { enter = true, format = "details" },
+    --                 filter = {
+    --                     any = {
+    --                         { event = "notify" },
+    --                         { error = true },
+    --                         { warning = true },
+    --                         { event = "msg_show", kind = { "" } },
+    --                         { event = "lsp",      kind = "message" },
+    --                     },
+    --                 },
+    --                 filter_opts = { count = 1 },
+    --             },
+    --             -- :Noice errors
+    --             errors = {
+    --                 -- options for the message history that you get with `:Noice`
+    --                 view = "popup",
+    --                 opts = { enter = true, format = "details" },
+    --                 filter = { error = true },
+    --                 filter_opts = { reverse = true },
+    --             },
+    --             all = {
+    --                 -- options for the message history that you get with `:Noice`
+    --                 view = "split",
+    --                 opts = { enter = true, format = "details" },
+    --                 filter = {},
+    --             },
+    --         },
+    --         lsp = {
+    --             progress = {
+    --                 enabled = true,
+    --                 -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
+    --                 -- See the section on formatting for more details on how to customize.
+    --                 --- @type NoiceFormat|string
+    --                 format = "lsp_progress",
+    --                 --- @type NoiceFormat|string
+    --                 format_done = "lsp_progress_done",
+    --                 throttle = 1000 / 30, -- frequency to update lsp progress message
+    --                 view = "mini",
+    --             },
+    --             override = {
+    --                 -- override the default lsp markdown formatter with Noice
+    --                 ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+    --                 -- override the lsp markdown formatter with Noice
+    --                 ["vim.lsp.util.stylize_markdown"] = false,
+    --                 -- override cmp documentation with Noice (needs the other options to work)
+    --                 ["cmp.entry.get_documentation"] = false,
+    --             },
+    --             hover = {
+    --                 enabled = true,
+    --                 silent = false, -- set to true to not show a message if hover is not available
+    --                 view = nil,     -- when nil, use defaults from documentation
+    --                 ---@type NoiceViewOptions
+    --                 opts = {},      -- merged with defaults from documentation
+    --             },
+    --             signature = {
+    --                 enabled = true,
+    --                 auto_open = {
+    --                     enabled = true,
+    --                     trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
+    --                     luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
+    --                     throttle = 50,  -- Debounce lsp signature help request by 50ms
+    --                 },
+    --                 view = nil,         -- when nil, use defaults from documentation
+    --                 ---@type NoiceViewOptions
+    --                 opts = {},          -- merged with defaults from documentation
+    --             },
+    --             message = {
+    --                 -- Messages shown by lsp servers
+    --                 enabled = true,
+    --                 view = "notify",
+    --                 opts = {},
+    --             },
+    --             -- defaults for hover and signature help
+    --             documentation = {
+    --                 view = "hover",
+    --                 ---@type NoiceViewOptions
+    --                 opts = {
+    --                     lang = "markdown",
+    --                     replace = true,
+    --                     render = "plain",
+    --                     format = { "{message}" },
+    --                     win_options = { concealcursor = "n", conceallevel = 3 },
+    --                 },
+    --             },
+    --         },
+    --         smart_move = {
+    --             -- noice tries to move out of the way of existing floating windows.
+    --             enabled = true, -- you can disable this behaviour here
+    --             -- add any filetypes here, that shouldn't trigger smart move.
+    --             excluded_filetypes = { "cmp_menu", "cmp_docs", "notify" },
+    --         },
+    --         -- you can enable a preset for easier configuration
+    --         presets = {
+    --             bottom_search = true,         -- use a classic bottom cmdline for search
+    --             command_palette = false,      -- position the cmdline and popupmenu together
+    --             long_message_to_split = true, -- long messages will be sent to a split
+    --             inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+    --             lsp_doc_border = true,        -- add a border to hover docs and signature help
+    --         },
+    --     },
+    --     dependencies = {
+    --         "MunifTanjim/nui.nvim",
+    --         "rcarriga/nvim-notify",
+    --     }
+    -- },
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -656,21 +638,21 @@ local plugins = {
 -- Check if the operating system is not android
 if os_name:find("android") == nil then
     -- Add Codeium to the plugins
-    table.insert(plugins,
-        {
-            {
-                "Exafunction/codeium.nvim",
-                event = "VeryLazy",
-                dependencies = {
-                    "nvim-lua/plenary.nvim",
-                    "hrsh7th/nvim-cmp",
-                },
-                config = function()
-                    require("codeium").setup({})
-                end
-            },
-        }
-    )
+    -- table.insert(plugins,
+    --     {
+    --         {
+    --             "Exafunction/codeium.nvim",
+    --             event = "VeryLazy",
+    --             dependencies = {
+    --                 "nvim-lua/plenary.nvim",
+    --                 "hrsh7th/nvim-cmp",
+    --             },
+    --             config = function()
+    --                 require("codeium").setup({})
+    --             end
+    --         },
+    --     }
+    -- )
 end
 
 
