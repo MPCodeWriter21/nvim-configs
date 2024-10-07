@@ -239,3 +239,23 @@ lspconfig.yamlls.setup {
         },
     }
 }
+
+-- Rust Analyzer
+lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importMergeBehavior = "last",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+}
