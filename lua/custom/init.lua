@@ -95,34 +95,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank()
     end,
 })
-
--- Define the keymap to put parenthesis, brackets, braces, quotations and backtick
--- around visually selected text on command
-local map = function(text)
-    -- function()
-    --         vim.cmd 'd'
-    --         local column = vim.api.nvim_win_get_cursor(0)[1]
-    --         local length = vim.fn.col('$') - 1
-    --         vim.notify(tostring(column))
-    --         vim.notify(tostring(length))
-    --         local command = ''
-    --         if column == length - 1 then
-    --             command = command .. 'a'
-    --         else
-    --             command = command .. 'i'
-    --         end
-    --         command = command .. text .. '<Esc>P'
-    --         vim.api.nvim_cmd(command, { noremap = true, silent = true })
-    --     end
-    vim.keymap.set(
-        'v',                              -- Mode: visual
-        string.sub(text, 1, 1),           -- First character of the text as the Key sequence
-        'd' .. 'i' .. text .. '<Esc>P',
-        { noremap = true, silent = true } -- Options
-    )
-end
-
-map "''"
-map '""'
-map '``'
-map '``'

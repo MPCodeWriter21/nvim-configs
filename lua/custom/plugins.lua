@@ -631,6 +631,10 @@ local plugins = {
             vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown" },
+    },
+    {
+        "tpope/vim-surround",
+        event = "VeryLazy"
     }
 }
 
