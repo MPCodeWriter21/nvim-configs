@@ -259,3 +259,9 @@ lspconfig.rust_analyzer.setup {
         }
     }
 }
+
+-- Zig LSP
+lspconfig.zls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+}
