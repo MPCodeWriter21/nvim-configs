@@ -166,10 +166,10 @@ local plugins = {
             end
         end
     },
-    {
-        "python-lsp/python-lsp-server",
-        ft = { "python" },
-    },
+    -- {
+    --     "python-lsp/python-lsp-server",
+    --     ft = { "python" },
+    -- },
     {
         "kamykn/spelunker.vim",
         lazy = false,

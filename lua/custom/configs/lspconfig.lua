@@ -35,6 +35,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
+-- Python LSP
 
 -- lspconfig.pyright.setup({
 --     on_attach = on_attach,
@@ -48,13 +49,9 @@ lspconfig.jedi_language_server.setup {
     filetypes = { "python" }
 }
 
-lspconfig.jsonls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-
 -- lspconfig.pylsp.setup {
 --     on_attach = on_attach,
+--     capabilities = capabilities,
 --     settings = {
 --         pylsp = {
 --             plugins = {
@@ -66,6 +63,24 @@ lspconfig.jsonls.setup {
 --         }
 --     }
 -- }
+
+lspconfig.ruff_lsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+        settings = {
+            -- Any extra CLI arguments for `ruff` go here.
+            -- args = {},
+        }
+    }
+}
+
+-- Json LSP
+
+lspconfig.jsonls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
 -- Markdown LSP
 lspconfig.prosemd_lsp.setup {
@@ -81,16 +96,6 @@ lspconfig.marksman.setup {
 lspconfig.html.setup {
     on_attach = on_attach,
     capabilities = capabilities
-}
-
-lspconfig.ruff_lsp.setup {
-    on_attach = on_attach,
-    init_options = {
-        settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            args = {},
-        }
-    }
 }
 
 vim.diagnostic.config({
@@ -208,18 +213,18 @@ lspconfig.ltex.setup({
     flags = { debounce_text_changes = 300 },
 })
 
--- Rust
-lspconfig.rust_analyzer.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        ['rust-analyzer'] = {
-            diagnostics = {
-                enable = false,
-            }
-        }
-    }
-}
+-- -- Rust
+-- lspconfig.rust_analyzer.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     settings = {
+--         ['rust-analyzer'] = {
+--             diagnostics = {
+--                 enable = false,
+--             }
+--         }
+--     }
+-- }
 
 -- Java lsp
 lspconfig.jdtls.setup {
