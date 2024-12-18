@@ -264,8 +264,50 @@ local plugins = {
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {}, -- for default options, refer to the configuration section for custom setup.
         cmd = "Trouble",
+        opts = {
+            icons = {
+                ---@type trouble.Indent.symbols
+                indent        = {
+                    top         = "│ ",
+                    middle      = "├╴",
+                    last        = "╰╴",
+                    fold_open   = " ",
+                    fold_closed = " ",
+                    ws          = "  ",
+                },
+                folder_closed = " ",
+                folder_open   = " ",
+                kinds         = {
+                    Array         = " ",
+                    Boolean       = "󰨙 ",
+                    Class         = " ",
+                    Constant      = "󰏿 ",
+                    Constructor   = " ",
+                    Enum          = " ",
+                    EnumMember    = " ",
+                    Event         = " ",
+                    Field         = " ",
+                    File          = " ",
+                    Function      = "󰊕 ",
+                    Interface     = " ",
+                    Key           = " ",
+                    Method        = "󰊕 ",
+                    Module        = " ",
+                    Namespace     = "󰦮 ",
+                    Null          = " ",
+                    Number        = "󰎠 ",
+                    Object        = " ",
+                    Operator      = " ",
+                    Package       = " ",
+                    Property      = " ",
+                    String        = " ",
+                    Struct        = "󰆼 ",
+                    TypeParameter = " ",
+                    Variable      = "󰀫 ",
+                },
+            },
+        },
         keys = {
             {
                 "<leader>xx",
@@ -297,6 +339,7 @@ local plugins = {
                 "<cmd>Trouble qflist toggle<cr>",
                 desc = "Quickfix List (Trouble)",
             },
+            ["]]"] = "next",
         },
         event = "VeryLazy"
     },

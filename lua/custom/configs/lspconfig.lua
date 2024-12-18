@@ -64,13 +64,14 @@ lspconfig.jedi_language_server.setup {
 --     }
 -- }
 
-lspconfig.ruff_lsp.setup {
+lspconfig.ruff.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {
         settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            -- args = {},
+            pyright = {
+                disableOrganizeImports = true,
+            },
         }
     }
 }
