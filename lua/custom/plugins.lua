@@ -96,6 +96,7 @@ local plugins = {
         config = function()
             require "plugins.configs.lspconfig"
             require "custom.configs.lspconfig"
+            require('core.utils').load_mappings('lsp')
         end,
         dependencies = {
             -- Automatically install LSPs and related tools to stdpath for Neovim
