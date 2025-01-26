@@ -5,6 +5,7 @@ local options = {
         vimgrep_arguments = {
             "rg",
             "-L",
+            "--auto-hybrid-regex",
             "--color=never",
             "--no-heading",
             "--with-filename",
