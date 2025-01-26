@@ -264,7 +264,7 @@ local plugins = {
     -- },
     {
         "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
         cmd = "Trouble",
         opts = {
             icons = {
