@@ -5,29 +5,42 @@ local default_plugins = {
     "nvim-lua/plenary.nvim",
 
     {
-        "NvChad/base46",
-        branch = "v2.0",
+        "nvchad/base46",
         build = function()
             require("base46").load_all_highlights()
         end,
     },
 
     {
-        "NvChad/ui",
-        branch = "v2.0",
-        lazy = false,
+        "nvchad/ui",
+        config = function()
+            require "nvchad"
+        end,
     },
 
-    {
-        "NvChad/nvterm",
-        init = function()
-            require("core.utils").load_mappings "nvterm"
-        end,
-        config = function(_, opts)
-            require "base46.term"
-            require("nvterm").setup(opts)
-        end,
-    },
+    "nvzone/volt",
+    "nvzone/menu",
+    { "nvzone/minty", cmd = { "Huefy", "Shades" } },
+
+
+  {
+    "nvim-tree/nvim-web-devicons",
+    opts = function()
+      dofile(vim.g.base46_cache .. "devicons")
+      return { override = require "nvchad.icons.devicons" }
+    end,
+  },
+
+    -- {
+    --     "NvChad/nvterm",
+    --     init = function()
+    --         require("core.utils").load_mappings "nvterm"
+    --     end,
+    --     config = function(_, opts)
+    --         require "base46.term"
+    --         require("nvterm").setup(opts)
+    --     end,
+    -- },
 
     {
         "NvChad/nvim-colorizer.lua",
@@ -45,30 +58,29 @@ local default_plugins = {
     },
 
     {
-        "nvim-tree/nvim-web-devicons",
-        opts = function()
-            return { override = require "nvchad.icons.devicons" }
-        end,
+        "lukas-reineke/indent-blankline.nvim",
+        event = "User FilePost",
+        opts = {
+            indent = { char = "│", highlight = "IblChar" },
+            scope = { char = "│", highlight = "IblScopeChar" },
+        },
         config = function(_, opts)
-            dofile(vim.g.base46_cache .. "devicons")
-            require("nvim-web-devicons").setup(opts)
+            dofile(vim.g.base46_cache .. "blankline")
+
+            local hooks = require "ibl.hooks"
+            hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+            require("ibl").setup(opts)
+
+            dofile(vim.g.base46_cache .. "blankline")
         end,
     },
 
+    -- formatting!
     {
-        "lukas-reineke/indent-blankline.nvim",
-        version = "2.20.7",
-        init = function()
-            require("core.utils").lazy_load "indent-blankline.nvim"
-        end,
-        opts = function()
-            return require("plugins.configs.others").blankline
-        end,
-        config = function(_, opts)
-            require("core.utils").load_mappings "blankline"
-            dofile(vim.g.base46_cache .. "blankline")
-            require("indent_blankline").setup(opts)
-        end,
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = { lua = { "stylua" } },
+        },
     },
 
     {
@@ -141,6 +153,7 @@ local default_plugins = {
         init = function()
             require("core.utils").lazy_load "nvim-lspconfig"
         end,
+        event = "User FilePost",
         config = function()
             require "plugins.configs.lspconfig"
         end,
