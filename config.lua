@@ -23,3 +23,21 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
+
+-- Custom keybinds
+lvim.keys.normal_mode["<C-s>"] = "<Cmd>w<CR>"
+lvim.keys.insert_mode["<C-s>"] = "<Cmd>w<CR>"
+lvim.keys.normal_mode["<C-n>"] = "<Cmd>NvimTreeToggle<CR>"
+lvim.keys.insert_mode["<C-n>"] = "<Cmd>NvimTreeToggle<CR>"
+lvim.keys.normal_mode["<C-w>"] = "<Cmd>BufferKill<CR>"
+lvim.keys.normal_mode["<leader>e"] = "<Cmd>NvimTreeFocus<CR>"
+lvim.keys.normal_mode["<leader>tt"] = "<Cmd>ToggleTerm<CR>"
+lvim.keys.normal_mode["<Tab>"] = "<Cmd>BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = "<Cmd>BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<Esc>"] = "<Cmd>nohlsearch<CR>"
+
+lvim.keys.normal_mode["<leader>w"] = false
+lvim.keys.normal_mode["<leader>c"] = false
+lvim.keys.normal_mode["<leader>bb"] = false
+lvim.keys.normal_mode["<leader>bn"] = false
+lvim.keys.term_mode["<C-l>"] = false
