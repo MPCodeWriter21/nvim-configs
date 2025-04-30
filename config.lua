@@ -24,6 +24,18 @@ vim.g.clipboard = {
   },
 }
 
+-- My preferences
+vim.opt.colorcolumn = "88"
+-- vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg='Blue', bg='Blue' })
+vim.wo.wrap = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.smarttab = true
+vim.opt.softtabstop = 4
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 4
+vim.o.conceallevel = 2
+
 -- Custom keybinds
 lvim.keys.normal_mode["<leader>w"] = false
 lvim.keys.normal_mode["<leader>c"] = false
