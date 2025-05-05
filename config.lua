@@ -4,8 +4,9 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-vim.opt.shell = "zsh"
-vim.opt.shellcmdflag = "-c"
+local uv = vim.loop
+vim.opt.shell = uv.os_uname().version:match "Windows" and "cmd" or "bash"
+vim.opt.shellcmdflag = uv.os_uname().version:match "Windows" and "/c" or "-c"
 vim.cmd [[
 		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
@@ -14,14 +15,14 @@ vim.cmd [[
 
 -- Set a compatible clipboard manager
 vim.g.clipboard = {
-  copy = {
-    ["+"] = "win32yank.exe -i --crlf",
-    ["*"] = "win32yank.exe -i --crlf",
-  },
-  paste = {
-    ["+"] = "win32yank.exe -o --lf",
-    ["*"] = "win32yank.exe -o --lf",
-  },
+    copy = {
+        ["+"] = "win32yank.exe -i --crlf",
+        ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+        ["+"] = "win32yank.exe -o --lf",
+        ["*"] = "win32yank.exe -o --lf",
+    },
 }
 
 -- My preferences
