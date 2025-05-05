@@ -114,10 +114,19 @@ function M.setup()
 
     local function set_handler_opts_if_not_set(name, handler, opts)
         if debug.getinfo(vim.lsp.handlers[name], "S").source:find(vim.env.VIMRUNTIME, 1, true) then
-            vim.lsp.handlers[name] = vim.lsp.with(handler, opts)
+            -- New way: merge the handler and opts directly
+            vim.lsp.handlers[name] = function(err, result, ctx, config)
+                -- Apply the options first (like the old vim.lsp.with did internally)
+                if opts then
+                    if opts.override then
+                        config = vim.tbl_extend("force", config or {}, opts.override)
+                    end
+                end
+                -- Then call the handler
+                handler(err, result, ctx, config)
+            end
         end
     end
-
     set_handler_opts_if_not_set("textDocument/hover", vim.lsp.handlers.hover, { border = "rounded" })
     set_handler_opts_if_not_set("textDocument/signatureHelp", vim.lsp.handlers.signature_help, { border = "rounded" })
 
