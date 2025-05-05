@@ -24,11 +24,6 @@ Log:debug "Starting LunarVim"
 local commands = require "lvim.core.commands"
 commands.load(commands.defaults)
 
--- Custom bg color for the ColorColumn
-vim.api.nvim_set_hl(0, "ColorColumn", { bg='#2b3251' })
--- Custom bg color for markdown code blocks
-vim.api.nvim_set_hl(0, "@codechunk", { bg = "#303945" })
-
 -- Define function to format and save the current file
 function FormatAndSave()
     local file_path = vim.fn.expand('%')
