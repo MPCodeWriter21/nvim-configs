@@ -403,6 +403,15 @@ local core_plugins = {
         event = "VeryLazy"
     },
 
+    {
+        "github/copilot.vim",
+        event = "VeryLazy",
+        config = function()
+            -- vim.g.copilot_no_tab_map = true
+            -- vim.g.copilot_assume_mapped = true
+            -- vim.keymap.set('i', '<Tab>', function () return vim.fn['copilot#Accept']() end, { expr = true })
+        end
+    },
 }
 
 local default_snapshot_path = join_paths(get_lvim_base_dir(), "snapshots", "default.json")
