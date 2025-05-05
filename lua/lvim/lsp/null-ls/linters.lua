@@ -14,9 +14,9 @@ local alternative_methods = {
 
 function M.list_registered(filetype)
     local registered_providers = services.list_registered_providers_names(filetype)
-    local providers_for_methods = vim.tbl_flatten(vim.tbl_map(function(m)
+    local providers_for_methods = vim.iter(vim.tbl_map(function(m)
         return registered_providers[m] or {}
-    end, alternative_methods))
+    end, alternative_methods)):flatten()
 
     return providers_for_methods
 end
