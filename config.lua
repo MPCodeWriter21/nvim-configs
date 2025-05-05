@@ -27,7 +27,6 @@ vim.g.clipboard = {
 
 -- My preferences
 vim.opt.colorcolumn = "88"
--- vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg='Blue', bg='Blue' })
 vim.wo.wrap = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
