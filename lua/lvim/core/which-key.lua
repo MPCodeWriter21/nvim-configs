@@ -113,18 +113,18 @@ M.config = function()
       ["q"] = { "<cmd>confirm q<CR>", "Quit" },
       ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
       ["c"] = { "<cmd>BufferKill<CR>", "Close Buffer" },
-      ["f"] = {
-        function()
-          require("lvim.core.telescope.custom-finders").find_project_files { previewer = false }
-        end,
-        "Find File",
-      },
+      -- ["f"] = {
+      --   function()
+      --     require("lvim.core.telescope.custom-finders").find_project_files { previewer = false }
+      --   end,
+      --   "Find File",
+      -- },
       ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
       b = {
         name = "Buffers",
         j = { "<cmd>BufferLinePick<cr>", "Jump" },
-        -- f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
+        f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
         b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
         n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
         W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
