@@ -10,7 +10,8 @@ if vim.fn.has "nvim-0.10" ~= 1 then
 end
 
 local uv = vim.loop
-local path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
+-- local path_sep = uv.os_uname().version:match "Windows" and "\\" or "/"
+local path_sep = "/"
 
 ---Join path segments that were passed as input
 ---@return string
