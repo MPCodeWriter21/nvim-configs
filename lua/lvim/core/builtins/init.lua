@@ -21,6 +21,7 @@ local builtins = {
     "lvim.core.lualine",
     "lvim.core.alpha",
     "lvim.core.mason",
+    "lvim.custom.trouble"
 }
 
 function M.config(config)
