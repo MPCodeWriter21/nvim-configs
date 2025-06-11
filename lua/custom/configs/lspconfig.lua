@@ -86,6 +86,7 @@ lspconfig.jsonls.setup {
 -- Markdown LSP
 lspconfig.prosemd_lsp.setup {
     on_attach = on_attach,
+    capabilities = capabilities
 }
 
 lspconfig.marksman.setup {
