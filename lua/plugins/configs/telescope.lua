@@ -12,6 +12,12 @@ local options = {
             "--line-number",
             "--column",
             "--smart-case",
+            "-g",
+            "!**/node_modules/**", -- Exclude node_modules
+            "-g",
+            "!**/.git/**", -- Exclude .git directories
+            "-g",
+            "!**/static/libraries/**", -- Exclude static libraries
         },
         prompt_prefix = "   ",
         selection_caret = "  ",
