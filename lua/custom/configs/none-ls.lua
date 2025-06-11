@@ -9,7 +9,7 @@ local markdownlint = {
     -- that spawns the command with the given arguments and options
     generator = null_ls.generator({
         command = "markdownlint",
-        args = { "--stdin", "-c", vim.fn.stdpath("config") .. "/lua/custom/configs/markdownlint.json" },
+        args = { "--stdin" },
         to_stdin = true,
         from_stderr = true,
         -- choose an output format (raw, json, or line)
