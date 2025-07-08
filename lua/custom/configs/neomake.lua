@@ -31,7 +31,7 @@
 --    }
 -- }
 
-vim.g.neomake_python_enabled_makers = {'pylint'}
+-- vim.g.neomake_python_enabled_makers = {'pylint'}
 
 vim.fn["neomake#configure#automake"]('nrw', 500)
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
