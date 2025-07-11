@@ -76,7 +76,8 @@ local plugins = {
                 "prosemd-lsp",
                 "codelldb",
                 "typescript-language-server",
-                "yamlfmt"
+                "yamlfmt",
+                "gopls"
             },
         },
     },

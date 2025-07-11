@@ -272,3 +272,24 @@ lspconfig.zls.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
+
+-- Golang LSP
+lspconfig.gopls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+                useany = true,
+            },
+            staticcheck = true,
+            codelenses = {
+                gc_details = true,
+                generate = true,
+                test = true,
+                tidy = true,
+            },
+        }
+    }
+}
