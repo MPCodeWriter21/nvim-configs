@@ -5,6 +5,7 @@ vim.opt.shiftwidth = 4
 vim.opt.smarttab = true
 vim.opt.softtabstop = 4
 vim.opt.relativenumber = true
+vim.opt.virtualedit = 'all'
 vim.opt.scrolloff = 4
 vim.o.conceallevel = 2
 
