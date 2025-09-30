@@ -2,7 +2,6 @@ local config = require("plugins.configs.lspconfig")
 local on_attach = config.on_attach
 local capabilities = config.capabilities
 
-local lspconfig = require("lspconfig")
 local util = require 'lspconfig.util'
 
 
@@ -37,20 +36,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Python LSP
 
--- lspconfig.pyright.setup({
+-- vim.lsp.config("pyright", {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     filetypes = { "python" }
 -- })
 
-lspconfig.jedi_language_server.setup {
+vim.lsp.config("jedi_language_server", {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "python" },
     cmd = { "uvx", "--from", ".", "--with", "jedi-language-server", "jedi-language-server" },
-}
+})
 
--- lspconfig.pylsp.setup {
+-- vim.lsp.config("pylsp", {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     settings = {
@@ -63,9 +62,9 @@ lspconfig.jedi_language_server.setup {
 --             }
 --         }
 --     }
--- }
+-- })
 
-lspconfig.ruff.setup {
+vim.lsp.config("ruff", {
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {
@@ -76,31 +75,31 @@ lspconfig.ruff.setup {
         }
     },
     cmd = { "uvx", "--from", ".", "--with", "ruff", "ruff", "server" },
-}
+})
 
 -- Json LSP
 
-lspconfig.jsonls.setup {
+vim.lsp.config("jsonls", {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
 
 -- Markdown LSP
-lspconfig.prosemd_lsp.setup {
+vim.lsp.config("prosemd_lsp", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
-lspconfig.marksman.setup {
+vim.lsp.config("marksman", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
 -- HTML LSP
-lspconfig.html.setup {
+vim.lsp.config("html", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
 vim.diagnostic.config({
     virtual_text = false
@@ -111,7 +110,7 @@ vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({ border = "rounded", focus = false }, { focus = false })]]
 
 -- C++
-lspconfig.clangd.setup {
+vim.lsp.config("clangd", {
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {
@@ -133,26 +132,26 @@ lspconfig.clangd.setup {
         completeUnimported = true,
         semanticHighlighting = true,
     }
-}
+})
 
-lspconfig.cmake.setup {
+vim.lsp.config("cmake", {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "cmake" }
-}
+})
 
--- lspconfig.ccls.setup {
+-- vim.lsp.config("ccls", {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     filetypes = { "c", "cpp" }
--- }
+-- })
 
 -- require("sg").setup {
 --     on_attach = on_attach
 -- }
 
 -- Javascript
-lspconfig.biome.setup {
+vim.lsp.config("biome", {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = {
@@ -171,26 +170,26 @@ lspconfig.biome.setup {
     root_dir = util.root_pattern('biome.json', 'biome.jsonc'),
     single_file_support = false,
     cmd = { "biome", "lsp-proxy" }
-}
+})
 
-lspconfig.ember.setup {
+vim.lsp.config("ember", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
 -- Formatter
-lspconfig.ast_grep.setup {
+vim.lsp.config("ast_grep", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
--- lspconfig.efm.setup {
+-- vim.lsp.config("efm", {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     init_options = { documentFormatting = true }
--- }
+-- })
 
-lspconfig.ts_ls.setup {
+vim.lsp.config("ts_ls", {
     init_options = {
         plugins = {
             {
@@ -200,14 +199,14 @@ lspconfig.ts_ls.setup {
             },
         },
     },
-}
+})
 
-lspconfig.bashls.setup {
+vim.lsp.config("bashls", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
-lspconfig.ltex.setup({
+vim.lsp.config("ltex", {
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = {
@@ -217,8 +216,8 @@ lspconfig.ltex.setup({
     flags = { debounce_text_changes = 300 },
 })
 
--- -- Rust
--- lspconfig.rust_analyzer.setup {
+-- Rust
+-- vim.lsp.config("rust_analyzer", {
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     settings = {
@@ -228,17 +227,17 @@ lspconfig.ltex.setup({
 --             }
 --         }
 --     }
--- }
+-- })
 
 -- Java lsp
-lspconfig.jdtls.setup {
+vim.lsp.config("jdtls", {
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = { 'jdtls' }
-}
+})
 
 -- Yaml
-lspconfig.yamlls.setup {
+vim.lsp.config("yamlls", {
     settings = {
         yaml = {
             schemas = {
@@ -247,10 +246,10 @@ lspconfig.yamlls.setup {
             },
         },
     }
-}
+})
 
 -- Rust Analyzer
-lspconfig.rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -267,16 +266,16 @@ lspconfig.rust_analyzer.setup {
             },
         }
     }
-}
+})
 
 -- Zig LSP
-lspconfig.zls.setup {
+vim.lsp.config("zls", {
     on_attach = on_attach,
     capabilities = capabilities
-}
+})
 
 -- Golang LSP
-lspconfig.gopls.setup {
+vim.lsp.config("gopls", {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -294,4 +293,4 @@ lspconfig.gopls.setup {
             },
         }
     }
-}
+})
