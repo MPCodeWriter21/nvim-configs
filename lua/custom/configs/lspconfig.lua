@@ -46,7 +46,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 lspconfig.jedi_language_server.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "python" }
+    filetypes = { "python" },
+    cmd = { "uvx", "--from", ".", "--with", "jedi-language-server", "jedi-language-server" },
 }
 
 -- lspconfig.pylsp.setup {
@@ -73,7 +74,8 @@ lspconfig.ruff.setup {
                 disableOrganizeImports = true,
             },
         }
-    }
+    },
+    cmd = { "uvx", "--from", ".", "--with", "ruff", "ruff", "server" },
 }
 
 -- Json LSP
