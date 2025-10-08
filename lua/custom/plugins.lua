@@ -68,7 +68,6 @@ local plugins = {
                 "ast-grep",
                 "jedi-language-server",
                 "bash-language-server",
-                "ruff-lsp",
                 "ltex-ls",
                 "rust-analyzer",
                 "jdtls",
