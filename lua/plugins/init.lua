@@ -57,7 +57,7 @@ local default_plugins = {
 
     {
         "lukas-reineke/indent-blankline.nvim",
-        version = "2.20.7",
+        -- version = "2.20.7",
         init = function()
             require("core.utils").lazy_load "indent-blankline.nvim"
         end,
@@ -67,12 +67,13 @@ local default_plugins = {
         config = function(_, opts)
             require("core.utils").load_mappings "blankline"
             dofile(vim.g.base46_cache .. "blankline")
-            require("indent_blankline").setup(opts)
+            require("ibl").setup(opts)
         end,
     },
 
     {
         "nvim-treesitter/nvim-treesitter",
+        branch="main",
         init = function()
             require("core.utils").lazy_load "nvim-treesitter"
         end,
@@ -83,7 +84,7 @@ local default_plugins = {
         end,
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "syntax")
-            require("nvim-treesitter.configs").setup(opts)
+            require("nvim-treesitter").setup(opts)
         end,
         event = "BufRead",
     },
