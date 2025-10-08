@@ -25,6 +25,9 @@ M.blankline = {
   whitespace = {
       remove_blankline_trail = false,
   },
+  indent = {
+      char = "▎",
+  },
   -- show_trailing_blankline_indent = false,
   -- show_first_indent_level = false,
   -- show_current_context = true,

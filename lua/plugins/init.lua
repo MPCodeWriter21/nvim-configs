@@ -65,6 +65,18 @@ local default_plugins = {
             return require("plugins.configs.others").blankline
         end,
         config = function(_, opts)
+            local hooks = require "ibl.hooks"
+            hooks.register(
+                hooks.type.VIRTUAL_TEXT,
+                function(_, _, _, virt_text)
+                    if virt_text[1] and virt_text[1][1] == '▎' then
+                        virt_text[1] = { ' ', { "@ibl.whitespace.char.1" } }
+                    end
+
+                    return virt_text
+                end
+            )
+
             require("core.utils").load_mappings "blankline"
             dofile(vim.g.base46_cache .. "blankline")
             require("ibl").setup(opts)
@@ -73,7 +85,7 @@ local default_plugins = {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        branch="main",
+        branch = "main",
         init = function()
             require("core.utils").lazy_load "nvim-treesitter"
         end,
