@@ -69,6 +69,7 @@ vim.lsp.enable("jedi_language_server")
 vim.lsp.config("ruff", {
     on_attach = on_attach,
     capabilities = capabilities,
+    filetypes = { "python" },
     init_options = {
         settings = {
             pyright = {
@@ -80,13 +81,13 @@ vim.lsp.config("ruff", {
 vim.lsp.enable("ruff")
 
 vim.lsp.config('ty', {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    ty = {
-      -- ty language server settings go here
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "python" },
+    settings = {
+        ty = {
+        }
     }
-  }
 })
 vim.lsp.enable('ty')
 
@@ -313,4 +314,3 @@ vim.lsp.config("gopls", {
     }
 })
 vim.lsp.enable("gopls")
-
