@@ -43,13 +43,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- })
 -- vim.lsp.enable("pyright")
 
-vim.lsp.config("jedi_language_server", {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "python" },
-    cmd = { "uvx", "--from", ".", "--with", "jedi-language-server", "jedi-language-server" },
-})
-vim.lsp.enable("jedi_language_server")
+-- vim.lsp.config("jedi_language_server", {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "python" },
+--     cmd = { "uvx", "--from", ".", "--with", "jedi-language-server", "jedi-language-server" },
+-- })
+-- vim.lsp.enable("jedi_language_server")
 
 -- vim.lsp.config("pylsp", {
 --     on_attach = on_attach,
@@ -77,9 +77,19 @@ vim.lsp.config("ruff", {
             },
         }
     },
-    cmd = { "uvx", "--from", ".", "--with", "ruff", "ruff", "server" },
 })
 vim.lsp.enable("ruff")
+
+vim.lsp.config('ty', {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    ty = {
+      -- ty language server settings go here
+    }
+  }
+})
+vim.lsp.enable('ty')
 
 -- Json LSP
 
