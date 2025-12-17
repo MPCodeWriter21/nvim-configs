@@ -521,6 +521,7 @@ local plugins = {
     },
     {
         "stevearc/overseer.nvim",
+        tag = "v1.6.0",
         cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
         opts = {
             task_list = {
