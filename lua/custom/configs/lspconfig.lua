@@ -81,13 +81,18 @@ vim.lsp.config("ruff", {
 vim.lsp.enable("ruff")
 
 vim.lsp.config('ty', {
-    on_attach = on_attach,
+    on_attach = function (client, bufnr)
+        -- Disable formatting and go to definition capabilities for ty LSP
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        client.server_capabilities.definitionProvider = false
+        client.server_capabilities.declarationProvider = false
+        client.server_capabilities.typeDefinitionProvider = false
+
+        on_attach(client, bufnr)
+    end,
     capabilities = capabilities,
     filetypes = { "python" },
-    settings = {
-        ty = {
-        }
-    }
 })
 vim.lsp.enable('ty')
 
