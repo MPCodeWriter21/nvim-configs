@@ -702,23 +702,7 @@ local plugins = {
         keys = {
             { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
         }
-    },
-    {
-        "barreiroleo/ltex_extra.nvim",
-        ft = {
-            "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex",
-            "pandoc", "quarto", "rmd", "text", "python", "c", "c++"
-        },
-        dependencies = { "neovim/nvim-lspconfig" },
-        config = function()
-            require("ltex_extra").setup {
-                server_opts = {
-                    capabilities = require("plugins.configs.lspconfig").capabilities,
-                    on_attach = require("plugins.configs.lspconfig").on_attach,
-                },
-            }
-        end
-    },
+    }
 }
 
 
