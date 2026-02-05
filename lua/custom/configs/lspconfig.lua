@@ -15,15 +15,34 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-                buffer = event.buf,
-                callback = vim.lsp.buf.document_highlight,
-            })
+            local cursor_hold_autocmd = vim.api.nvim_create_autocmd(
+                { 'CursorHold', 'CursorHoldI' },
+                {
+                    buffer = event.buf,
+                    callback = vim.lsp.buf.document_highlight,
+                }
+            )
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-                buffer = event.buf,
-                callback = vim.lsp.buf.clear_references,
-            })
+            local cursor_move_autocmd = vim.api.nvim_create_autocmd(
+                { 'CursorMoved', 'CursorMovedI' },
+                {
+                    buffer = event.buf,
+                    callback = vim.lsp.buf.clear_references,
+                }
+            )
+
+            -- On filetype change, delete CursorHold and CursorMoved autocmds
+            -- Thanks to Github Copilot I am forced to do this -_-
+            vim.api.nvim_create_autocmd(
+                'FileType',
+                {
+                    buffer = event.buf,
+                    callback = function()
+                        vim.api.nvim_del_autocmd(cursor_hold_autocmd)
+                        vim.api.nvim_del_autocmd(cursor_move_autocmd)
+                    end
+                }
+            )
         end
 
         -- Set the colors for highlights
@@ -81,7 +100,7 @@ vim.lsp.config("ruff", {
 vim.lsp.enable("ruff")
 
 vim.lsp.config('ty', {
-    on_attach = function (client, bufnr)
+    on_attach = function(client, bufnr)
         -- Disable formatting and go to definition capabilities for ty LSP
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
