@@ -37,7 +37,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 'FileType',
                 {
                     buffer = event.buf,
-                    callback = function()
+                    callback = function(filetype_event)
+                        if filetype_event.buf ~= event.buf then
+                            return
+                        end
                         vim.api.nvim_del_autocmd(cursor_hold_autocmd)
                         vim.api.nvim_del_autocmd(cursor_move_autocmd)
                     end
