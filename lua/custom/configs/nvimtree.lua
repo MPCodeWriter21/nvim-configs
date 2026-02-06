@@ -5,5 +5,9 @@ options["filters"]["custom"] = {
     "crash_report.log",
     "poetry.lock"
 }
+options["filesystem_watchers"]["ignore_dirs"] = {
+    "/.ccls-cache", "/build", "/node_modules", "/target",
+    ".*__pycache__.*", "/.venv"
+}
 
 return options
