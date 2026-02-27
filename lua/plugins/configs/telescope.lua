@@ -1,5 +1,3 @@
-local open_with_trouble = require("trouble.sources.telescope").open
-
 local options = {
     defaults = {
         vimgrep_arguments = {
@@ -56,9 +54,7 @@ local options = {
         mappings = {
             n = {
                 ["q"] = require("telescope.actions").close,
-                ["<c-t>"] = open_with_trouble
             },
-            i = { ["<c-t>"] = open_with_trouble },
         },
     },
 
