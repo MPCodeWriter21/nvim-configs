@@ -1,5 +1,0 @@
-[style]
-column_limit=88
-split_before_dot=True
-split_before_first_argument=True
-dedent_closing_brackets=True
