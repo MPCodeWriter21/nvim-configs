@@ -60,7 +60,6 @@ local plugins = {
                 "yapf",
                 "docformatter",
                 "lua-language-server",
-                "glow",
                 "marksman",
                 "clangd",
                 "ember-language-server",
@@ -366,9 +365,15 @@ local plugins = {
         event = "VeryLazy"
     },
     {
-        "ellisonleao/glow.nvim",
-        config = true,
-        cmd = "Glow"
+        'MeanderingProgrammer/render-markdown.nvim',
+        ft = { "markdown" },
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            completions = { lsp = { enabled = true } },
+        },
+        config = function(_, opts)
+            require('render-markdown').setup(opts)
+        end,
     },
     -- {
     --     "TabbyML/vim-tabby",
