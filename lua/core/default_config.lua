@@ -73,6 +73,14 @@ M.ui = {
   },
 
   cheatsheet = { theme = "grid" }, -- simple/grid
+
+  lsp = {
+    -- show function signatures i.e args as you type
+    signature = {
+      disabled = false,
+      silent = true, -- silences 'no signature help available' message from appearing
+    },
+  },
 }
 
 M.plugins = "" -- path i.e "custom.plugins", so make custom/plugins.lua file
