@@ -60,6 +60,11 @@ local options = {
             winhighlight = "Normal:CmpDoc",
         },
     },
+    snippet = {
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end,
+    },
 
     formatting = formatting_style,
 
@@ -100,11 +105,13 @@ local options = {
         }),
     },
     sources = {
+        { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
         { name = "codeium" },
+        { name = 'nvim_lsp_signature_help' }
     },
 }
 

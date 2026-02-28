@@ -130,6 +130,16 @@ local default_plugins = {
         end,
     },
 
+    {
+        "neovim/nvim-lspconfig",
+        init = function()
+            require("core.utils").lazy_load "nvim-lspconfig"
+        end,
+        config = function()
+            require "plugins.configs.lspconfig"
+        end,
+    },
+
     -- load luasnips + cmp related in insert mode only
     {
         "hrsh7th/nvim-cmp",
@@ -165,6 +175,7 @@ local default_plugins = {
             {
                 "saadparwaiz1/cmp_luasnip",
                 "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-path",
             },
