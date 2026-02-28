@@ -16,6 +16,29 @@ end
 
 local plugins = {
     {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require "plugins.configs.lspconfig"
+            require "custom.configs.lspconfig"
+            require('core.utils').load_mappings('lsp')
+        end,
+        dependencies = {
+            -- Automatically install LSPs and related tools to stdpath for Neovim
+            { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+            'williamboman/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+            -- Useful status updates for LSP.
+            -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+            { 'j-hui/fidget.nvim',       opts = {} },
+
+            -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
+            -- used for completion, annotations and signatures of Neovim apis
+            { 'folke/lazydev.nvim',      opts = {} },
+        },
+        event = "VeryLazy",
+    },
+    {
         "f-person/git-blame.nvim",
         event = "VeryLazy",
         config = function()
