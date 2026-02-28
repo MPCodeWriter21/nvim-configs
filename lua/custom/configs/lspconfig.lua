@@ -33,15 +33,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({ border = "rounded", focus = false }, { focus = false })]]
 
 -- Python LSP
-
--- vim.lsp.config("pyright", {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     filetypes = { "python" }
--- })
--- vim.lsp.enable("pyright")
 
 vim.lsp.config("jedi_language_server", {
     on_attach = on_attach,
@@ -49,22 +45,6 @@ vim.lsp.config("jedi_language_server", {
     filetypes = { "python" },
 })
 vim.lsp.enable("jedi_language_server")
-
--- vim.lsp.config("pylsp", {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---         pylsp = {
---             plugins = {
---                 pycodestyle = {
---                     ignore = {},
---                     maxLineLength = 88
---                 }
---             }
---         }
---     }
--- })
--- vim.lsp.enable("pylsp")
 
 vim.lsp.config("ruff", {
     on_attach = on_attach,
@@ -80,22 +60,6 @@ vim.lsp.config("ruff", {
 })
 vim.lsp.enable("ruff")
 
-vim.lsp.config('ty', {
-    on_attach = function (client, bufnr)
-        -- Disable formatting and go to definition capabilities for ty LSP
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        client.server_capabilities.definitionProvider = false
-        client.server_capabilities.declarationProvider = false
-        client.server_capabilities.typeDefinitionProvider = false
-
-        on_attach(client, bufnr)
-    end,
-    capabilities = capabilities,
-    filetypes = { "python" },
-})
-vim.lsp.enable('ty')
-
 -- Json LSP
 
 vim.lsp.config("jsonls", {
@@ -103,19 +67,6 @@ vim.lsp.config("jsonls", {
     capabilities = capabilities,
 })
 vim.lsp.enable("jsonls")
-
--- Markdown LSP
-vim.lsp.config("prosemd_lsp", {
-    on_attach = on_attach,
-    capabilities = capabilities
-})
-vim.lsp.enable("prosemd_lsp")
-
-vim.lsp.config("marksman", {
-    on_attach = on_attach,
-    capabilities = capabilities
-})
-vim.lsp.enable("marksman")
 
 -- HTML LSP
 vim.lsp.config("html", {
@@ -127,10 +78,6 @@ vim.lsp.enable("html")
 vim.diagnostic.config({
     virtual_text = false
 })
-
--- Show line diagnostics automatically in hover window
-vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float({ border = "rounded", focus = false }, { focus = false })]]
 
 -- C++
 vim.lsp.config("clangd", {
@@ -158,24 +105,6 @@ vim.lsp.config("clangd", {
 })
 vim.lsp.enable("clangd")
 
-vim.lsp.config("cmake", {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "cmake" }
-})
-vim.lsp.enable("cmake")
-
--- vim.lsp.config("ccls", {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     filetypes = { "c", "cpp" }
--- })
--- vim.lsp.enable("ccls")
-
--- require("sg").setup {
---     on_attach = on_attach
--- }
-
 -- Javascript
 vim.lsp.config("biome", {
     on_attach = on_attach,
@@ -199,12 +128,6 @@ vim.lsp.config("biome", {
 })
 vim.lsp.enable("biome")
 
-vim.lsp.config("ember", {
-    on_attach = on_attach,
-    capabilities = capabilities
-})
-vim.lsp.enable("ember")
-
 -- Formatter
 vim.lsp.config("ast_grep", {
     on_attach = on_attach,
@@ -212,42 +135,12 @@ vim.lsp.config("ast_grep", {
 })
 vim.lsp.enable("ast_grep")
 
--- vim.lsp.config("efm", {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     init_options = { documentFormatting = true }
--- })
--- vim.lsp.enable("efm")
-
-vim.lsp.config("ts_ls", {
-    init_options = {
-        plugins = {
-            {
-                name = "@vue/typescript-plugin",
-                location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-                languages = { "javascript", "typescript", "vue" },
-            },
-        },
-    },
-})
-vim.lsp.enable("ts_ls")
-
+-- Bash
 vim.lsp.config("bashls", {
     on_attach = on_attach,
     capabilities = capabilities
 })
 vim.lsp.enable("bashls")
-
-vim.lsp.config("ltex", {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {
-        "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex",
-        "pandoc", "quarto", "rmd", "text", "python", "c", "c++"
-    },
-    flags = { debounce_text_changes = 300 },
-})
-vim.lsp.enable("ltex")
 
 -- Java lsp
 vim.lsp.config("jdtls", {
