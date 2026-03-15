@@ -7,7 +7,7 @@ options["filters"]["custom"] = {
 }
 options["filesystem_watchers"]["ignore_dirs"] = {
     "/.ccls-cache", "/build", "/node_modules", "/target",
-    ".*__pycache__.*", ".venv", "venv"
+    ".*__pycache__.*", ".venv", "venv", ".mypy_cache"
 }
 
 return options
