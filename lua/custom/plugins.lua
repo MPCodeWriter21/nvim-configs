@@ -215,13 +215,6 @@ local plugins = {
     --         vim.keymap.set('i', '<C-A-k>', '<ESC> <Cmd>:FiletypeFormat<CR> i')
     --     end
     -- },
-    -- {
-    --     "neomake/neomake",
-    --     ft = { "python" },
-    --     config = function()
-    --         require "custom.configs.neomake"
-    --     end
-    -- },
     {
         "kylechui/nvim-surround",
         event = "VeryLazy",
