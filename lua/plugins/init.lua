@@ -13,7 +13,7 @@ local default_plugins = {
     },
 
     {
-        "NvChad/ui",
+        "MPCodeWriter21/nvchad-ui",
         branch = "v2.0",
         lazy = false,
     },
