@@ -18,24 +18,6 @@ M.dap = {
     }
 }
 
-M.compiler = {
-    plugin = true,
-    n = {
-        ["<C-b>"] = {
-            "<cmd> CompilerOpen <CR>",
-            "Open compiler"
-        },
-        ["<leader>j"] = {
-            "<cmd> CompilerStop <CR> <cmd> CompilerRedo <CR>",
-            "Redo the last compiler command"
-        },
-        ["<leader>k"] = {
-            "<cmd> CompilerToggleResults <CR>",
-            "Toggle compiler results"
-        },
-    }
-}
-
 M.quickfix = {
     n = {
         ["<C-m>"] = { '<cmd> cNext <CR>', "Go to the next item in the quickfix list." },
